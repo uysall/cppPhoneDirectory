@@ -1,7 +1,3 @@
-//
-// Created by omer on 9/3/24.
-//
-
 #ifndef COLORS_HPP
 #define COLORS_HPP
 
@@ -12,4 +8,4 @@
 #define YELLOW  "\033[33m"
 #define BLUE    "\033[34m"
 
-#endif //COLORS_HPP
+#endif

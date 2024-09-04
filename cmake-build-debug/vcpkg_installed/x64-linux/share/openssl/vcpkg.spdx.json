@@ -3,13 +3,13 @@
   "spdxVersion": "SPDX-2.2",
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
-  "documentNamespace": "https://spdx.org/spdxdocs/openssl-x64-linux-3.3.1#1-a6a7865d-500f-482b-a204-73df407c4ad5",
-  "name": "openssl:x64-linux@3.3.1#1 5a803a6936aa5408df2c83f9a3ef416cf03c5e9358d50215e74f48b1e4ffba20",
+  "documentNamespace": "https://spdx.org/spdxdocs/openssl-x64-linux-3.3.1#1-6f3e3c7f-ab52-4dbb-8b0d-bc75b85f7d5d",
+  "name": "openssl:x64-linux@3.3.1#1 196e8607f84fad301b1e315e1fb2c3bff395f37d8026268401b9e678401c724b",
   "creationInfo": {
     "creators": [
       "Tool: vcpkg-2024-08-01-fd884a0d390d12783076341bd43d77c3a6a15658"
     ],
-    "created": "2024-08-28T13:59:29Z"
+    "created": "2024-09-04T06:24:20Z"
   },
   "relationships": [
     {
@@ -228,7 +228,7 @@
       "name": "openssl",
       "SPDXID": "SPDXRef-port",
       "versionInfo": "3.3.1#1",
-      "downloadLocation": "git+https://github.com/Microsoft/vcpkg#ports/openssl",
+      "downloadLocation": "git+https://github.com/Microsoft/vcpkg@038ce0eca1d7e3f285a8de86c75bb8b89255994d",
       "homepage": "https://www.openssl.org",
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
@@ -239,7 +239,7 @@
     {
       "name": "openssl:x64-linux",
       "SPDXID": "SPDXRef-binary",
-      "versionInfo": "5a803a6936aa5408df2c83f9a3ef416cf03c5e9358d50215e74f48b1e4ffba20",
+      "versionInfo": "196e8607f84fad301b1e315e1fb2c3bff395f37d8026268401b9e678401c724b",
       "downloadLocation": "NONE",
       "licenseConcluded": "Apache-2.0",
       "licenseDeclared": "NOASSERTION",
@@ -263,7 +263,7 @@
   ],
   "files": [
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/vcpkg.json",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/vcpkg.json",
       "SPDXID": "SPDXRef-file-0",
       "checksums": [
         {
@@ -275,7 +275,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/portfile.cmake",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/portfile.cmake",
       "SPDXID": "SPDXRef-file-1",
       "checksums": [
         {
@@ -287,7 +287,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/openssl.pc.in",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/openssl.pc.in",
       "SPDXID": "SPDXRef-file-2",
       "checksums": [
         {
@@ -299,7 +299,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/android-cc.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/android-cc.patch",
       "SPDXID": "SPDXRef-file-3",
       "checksums": [
         {
@@ -311,7 +311,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/portfile.cmake",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/portfile.cmake",
       "SPDXID": "SPDXRef-file-4",
       "checksums": [
         {
@@ -323,7 +323,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/move-openssldir.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/move-openssldir.patch",
       "SPDXID": "SPDXRef-file-5",
       "checksums": [
         {
@@ -335,7 +335,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/no-static-libs-for-shared.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/no-static-libs-for-shared.patch",
       "SPDXID": "SPDXRef-file-6",
       "checksums": [
         {
@@ -347,7 +347,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/configure",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/configure",
       "SPDXID": "SPDXRef-file-7",
       "checksums": [
         {
@@ -359,7 +359,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/no-empty-dirs.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/no-empty-dirs.patch",
       "SPDXID": "SPDXRef-file-8",
       "checksums": [
         {
@@ -371,7 +371,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/unix/remove-deps.cmake",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/unix/remove-deps.cmake",
       "SPDXID": "SPDXRef-file-9",
       "checksums": [
         {
@@ -383,7 +383,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/usage",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/usage",
       "SPDXID": "SPDXRef-file-10",
       "checksums": [
         {
@@ -395,7 +395,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/windows/portfile.cmake",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/windows/portfile.cmake",
       "SPDXID": "SPDXRef-file-11",
       "checksums": [
         {
@@ -407,7 +407,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/windows/install-layout.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/windows/install-layout.patch",
       "SPDXID": "SPDXRef-file-12",
       "checksums": [
         {
@@ -419,7 +419,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/windows/install-pdbs.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/windows/install-pdbs.patch",
       "SPDXID": "SPDXRef-file-13",
       "checksums": [
         {
@@ -431,7 +431,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/install-pc-files.cmake",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/install-pc-files.cmake",
       "SPDXID": "SPDXRef-file-14",
       "checksums": [
         {
@@ -443,7 +443,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/asm-armcap.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/asm-armcap.patch",
       "SPDXID": "SPDXRef-file-15",
       "checksums": [
         {
@@ -455,7 +455,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/command-line-length.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/command-line-length.patch",
       "SPDXID": "SPDXRef-file-16",
       "checksums": [
         {
@@ -467,7 +467,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/script-prefix.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/script-prefix.patch",
       "SPDXID": "SPDXRef-file-17",
       "checksums": [
         {
@@ -479,7 +479,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/vcpkg-cmake-wrapper.cmake.in",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/vcpkg-cmake-wrapper.cmake.in",
       "SPDXID": "SPDXRef-file-18",
       "checksums": [
         {
@@ -491,7 +491,7 @@
       "copyrightText": "NOASSERTION"
     },
     {
-      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/ports/openssl/cmake-config.patch",
+      "fileName": ".//home/omer/.vcpkg-clion/vcpkg/buildtrees/versioning_/versions/openssl/038ce0eca1d7e3f285a8de86c75bb8b89255994d/cmake-config.patch",
       "SPDXID": "SPDXRef-file-19",
       "checksums": [
         {

@@ -1,9 +1,15 @@
-/snap/clion/292/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/292/bin/ninja/linux/x64/ninja -DCMAKE_TOOLCHAIN_FILE=/home/omer/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /home/omer/CLionProjects/cppPhoneDirection -B /home/omer/CLionProjects/cppPhoneDirection/cmake-build-debug
+/snap/clion/292/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/292/bin/ninja/linux/x64/ninja -DCMAKE_TOOLCHAIN_FILE=/home/omer/.vcpkg-clion/vcpkg/scripts/buildsystems/vcpkg.cmake -G Ninja -S /home/omer/CLionProjects/cppPhoneDirectory -B /home/omer/CLionProjects/cppPhoneDirectory/cmake-build-debug
 -- Running vcpkg install
 Detecting compiler hash for triplet x64-linux...
 Compiler found: /usr/bin/c++
 All requested packages are currently installed.
-Total install time: 279 ns
+Total install time: 434 ns
+crow provides CMake targets:
+
+  # this is heuristically generated, and may not be correct
+  find_package(Crow CONFIG REQUIRED)
+  target_link_libraries(main PRIVATE Crow::Crow asio::asio)
+
 libpqxx provides CMake targets:
 
   # this is heuristically generated, and may not be correct
@@ -16,6 +22,6 @@ libpqxx provides pkg-config modules:
   libpqxx
 
 -- Running vcpkg install - done
--- Configuring done (1.9s)
+-- Configuring done (1.2s)
 -- Generating done (0.0s)
--- Build files have been written to: /home/omer/CLionProjects/cppPhoneDirection/cmake-build-debug
+-- Build files have been written to: /home/omer/CLionProjects/cppPhoneDirectory/cmake-build-debug

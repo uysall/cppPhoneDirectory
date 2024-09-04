@@ -35,7 +35,7 @@ Port-Version: 1
 Depends: vcpkg-cmake, vcpkg-cmake-config, vcpkg-cmake-get-vars
 Architecture: x64-linux
 Multi-Arch: same
-Abi: 5a803a6936aa5408df2c83f9a3ef416cf03c5e9358d50215e74f48b1e4ffba20
+Abi: 196e8607f84fad301b1e315e1fb2c3bff395f37d8026268401b9e678401c724b
 Description: OpenSSL is an open source project that provides a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library.
 Status: install ok installed
 
@@ -53,7 +53,7 @@ Version: 16.4
 Depends: vcpkg-cmake-get-vars
 Architecture: x64-linux
 Multi-Arch: same
-Abi: bc5708764e9b602d556249358b50c19845a5078396af55c61a4ee77fe3d387ec
+Abi: 36609bd0188c4638b525e767e147cd3da7a2768ae1c3abfb5d041407277dc04c
 Description: The official database access API of postgresql
 Default-Features: lz4, openssl, zlib
 Status: install ok installed
@@ -87,7 +87,25 @@ Version: 7.9.2
 Depends: libpq, vcpkg-cmake, vcpkg-cmake-config
 Architecture: x64-linux
 Multi-Arch: same
-Abi: f2b88e79393c80b292445b886130677f4303153af71fe6d7c707c6aba32d2e47
+Abi: 87a6da5b528e7be13893a528c3805636a8ef9c8ab62078eb525bc5f7f7eff624
 Description: The official C++ client API for PostgreSQL
+Status: install ok installed
+
+Package: asio
+Version: 1.30.2
+Depends: vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-linux
+Multi-Arch: same
+Abi: 0b80122996e15478b87ccc2a91c3137bf23656ecb871c7815938e434f18eae62
+Description: Asio is a cross-platform C++ library for network and low-level I/O programming that provides developers with a consistent asynchronous model using a modern C++ approach.
+Status: install ok installed
+
+Package: crow
+Version: 1.2.0
+Depends: asio, vcpkg-cmake, vcpkg-cmake-config
+Architecture: x64-linux
+Multi-Arch: same
+Abi: 187bef07b3637f4c874c2aa726a91183796940c7c741d0d285f30525ecbd6cf7
+Description: Very fast and easy to use C++ micro web framework
 Status: install ok installed
 

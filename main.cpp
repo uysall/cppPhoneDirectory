@@ -1,11 +1,10 @@
-#include "user.hpp"
 #include <iostream>
 #include <string>
 #include <vector>
-#include <pqxx/pqxx>
 #include <iomanip>
-
-//detalar kısmı eklenecek
+#include "colors.hpp"
+#include "user.hpp"
+#include <pqxx/pqxx>
 
 void addUser(pqxx::connection &conn) {
     std::vector<User> users;
@@ -119,6 +118,7 @@ void listUsers(pqxx::connection &conn) {
     }
 }
 
+
 int main() {
     try {
         pqxx::connection conn("dbname=direction user=Ömer password=Ou131973 host=127.0.0.1 port=5432");
@@ -158,7 +158,7 @@ int main() {
                     std::cout << "Exit" << std::endl;
                     break;
                 default:
-                    std::cerr << RED << "Invalid choice. Please try again." << RESET << std::endl;
+                    std::cerr << RED << "Exit Provided" << RESET << std::endl;
             }
         } while (choice != 4);
 
