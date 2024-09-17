@@ -2,121 +2,13 @@
 #include <string>
 #include <vector>
 #include <iomanip>
+#include <crow.h>
 #include "colors.hpp"
 #include "user.hpp"
 #include <pqxx/pqxx>
 
-void addUser(pqxx::connection &conn) {
-    std::vector<User> users;
-    int numberOfUsers;
-
-    while (true) {
-        std::cout << "How many users do you want to add? ";
-        std::cin >> numberOfUsers;
-
-        if (std::cin.fail() || numberOfUsers <= 0) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cerr << RED << "Invalid number of users. Please enter a positive integer." << RESET << std::endl;
-        } else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            break;
-        }
-    }
-
-    for (int i = 0; i < numberOfUsers; i++) {
-        std::string name, surname, email, phoneNumber;
-
-        std::cout << "User " << i + 1 << " - Enter the information:" << std::endl;
-
-        std::cout << "Name: ";
-        std::getline(std::cin, name);
-
-        std::cout << "Surname: ";
-        std::getline(std::cin, surname);
-
-        std::cout << "Email: ";
-        std::getline(std::cin, email);
-
-        std::cout << "Phone Number: ";
-        std::getline(std::cin, phoneNumber);
-
-        users.emplace_back(name, surname, email, phoneNumber);
-    }
-
-    pqxx::nontransaction exec(conn);
-
-    for (const auto &user : users) {
-        std::string query = "INSERT INTO direction.direction_table(name, surname, email, phonenumber) VALUES ($1, $2, $3, $4);";
-        exec.exec_params(query, user.name, user.surname, user.email, user.phoneNumber);
-    }
-
-    std::cout << GREEN << "Users have been successfully added to the database!" << RESET << std::endl;
-}
-
-void removeUser(pqxx::connection &conn) {
-    pqxx::nontransaction exec(conn);
-    std::string query = "SELECT name, surname, email, phonenumber FROM direction.direction_table;";
-    pqxx::result res = exec.exec(query);
-
-    std::cout << "\nSelect the user to remove:\n";
-    int index = 1;
-    for (const auto &row : res) {
-        std::cout << index++ << ") "
-                  << BLUE << std::setw(15) << std::left << row["name"].c_str()
-                  << YELLOW << std::setw(12) << std::left << row["surname"].c_str()
-                  << GREEN << std::setw(30) << std::left << row["email"].c_str()
-                  << RED << std::setw(15) << std::left << row["phonenumber"].c_str() << RESET << std::endl;
-    }
-
-    int userChoice;
-    while (true) {
-        std::cout << "Enter the number of the user to remove: ";
-        std::cin >> userChoice;
-
-        if (std::cin.fail() || userChoice <= 0 || userChoice > res.size()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cerr << RED << "Invalid choice. Please select a valid user number." << RESET << std::endl;
-        } else {
-            break;
-        }
-    }
-
-    std::string phoneNumber = res[userChoice - 1]["phonenumber"].c_str();
-
-    const std::string deleteQuery = "DELETE FROM direction.direction_table WHERE phonenumber = $1;";
-    const pqxx::result deleteRes = exec.exec_params(deleteQuery, phoneNumber);
-
-    if (deleteRes.affected_rows() > 0) {
-        std::cout << GREEN << "User has been successfully removed from the database!" << RESET << std::endl;
-    } else {
-        std::cerr << RED << "No user found with the given phone number." << RESET << std::endl;
-    }
-}
-
-void listUsers(pqxx::connection &conn) {
-    pqxx::nontransaction exec(conn);
-    std::string query = "SELECT name, surname, email, phonenumber FROM direction.direction_table;";
-    pqxx::result res = exec.exec(query);
-
-    std::cout << "\nResults:\n";
-    std::cout << std::left
-              << BLUE << std::setw(5) << "No."
-              << BLUE << std::setw(15) << "Name"
-              << YELLOW << std::setw(12) << "Surname"
-              << GREEN << std::setw(30) << "Email"
-              << RED << std::setw(15) << "Phone Number" << RESET << std::endl;
-
-    int index = 1;
-    for (const auto &row : res) {
-        std::cout << BLUE << std::setw(1) << std::left << index++ << ")   "
-                  << BLUE << std::setw(15) << std::left << row["name"].c_str()
-                  << YELLOW << std::setw(12) << std::left << row["surname"].c_str()
-                  << GREEN << std::setw(30) << std::left << row["email"].c_str()
-                  << RED << std::setw(15) << std::left << row["phonenumber"].c_str() << RESET << std::endl;
-    }
-}
+//response gönderen yere bak
+//user objesi yapıcam ve vector ile userlist yapıcam
 
 
 int main() {
@@ -128,42 +20,55 @@ int main() {
             return 1;
         }
 
-        int choice;
-        do {
-            std::cout << "\nMenu:\n";
-            std::cout << "1. Add User\n";
-            std::cout << "2. Remove User\n";
-            std::cout << "3. List Users\n";
-            std::cout << "4. Exit\n";
-            std::cout << "Enter your choice: ";
-            std::cin >> choice;
+        crow::SimpleApp app;
 
-            if (std::cin.fail()) {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                continue;
-            }
+        CROW_ROUTE(app, "/add_user")
+                .methods(crow::HTTPMethod::POST)
+                ([&conn](const crow::request &req) {
+                    std::cerr << "Request body: " << req.body << std::endl;
 
-            switch (choice) {
-                case 1:
-                    addUser(conn);
-                    break;
-                case 2:
-                    removeUser(conn);
-                    break;
-                case 3:
-                    listUsers(conn);
-                    break;
-                case 4:
-                    std::cout << "Exit" << std::endl;
-                    break;
-                default:
-                    std::cerr << RED << "Exit Provided" << RESET << std::endl;
-            }
-        } while (choice != 4);
+                    auto json = crow::json::load(req.body);
+                    if (!json || !json.has("name") || !json.has("surname") || !json.has("email") || !json.has(
+                            "phoneNumber")) {
+                    }
 
+                    auto name = json["name"].s();
+                    auto surname = json["surname"].s();
+                    auto email = json["email"].s();
+                    auto phoneNumber = json["phoneNumber"].s();
+
+                    try {
+                        addUser(conn, name, surname, email, phoneNumber);
+                        return crow::response{200, "User added successfully"};
+                    } catch (const std::exception &e) {
+                        return crow::response{500, "Database error: " + std::string(e.what())};
+                    }
+                });
+
+
+        CROW_ROUTE(app, "/remove_user")
+                .methods(crow::HTTPMethod::POST)
+                ([&conn](const crow::request &req) {
+                    auto phoneNumber = req.url_params.get("phoneNumber");
+
+                    if (phoneNumber) {
+                        removeUser(conn, phoneNumber);
+                        return crow::response{200, "User successfully removed"};
+                    }
+                    return crow::response{400, "invalid parameters"};
+                });
+
+        CROW_ROUTE(app, "/list_users")
+                .methods(crow::HTTPMethod::GET)
+                ([&conn]() {
+                    auto users = listUsers(conn);
+                    return crow::response{users};
+                });
+
+        app.port(18081).multithreaded().run();
     } catch (const std::exception &e) {
         std::cerr << RED << e.what() << RESET << std::endl;
+        return 1;
     }
 
     return 0;

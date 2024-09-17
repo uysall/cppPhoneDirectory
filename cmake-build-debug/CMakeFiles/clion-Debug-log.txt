@@ -3,7 +3,7 @@
 Detecting compiler hash for triplet x64-linux...
 Compiler found: /usr/bin/c++
 All requested packages are currently installed.
-Total install time: 434 ns
+Total install time: 207 ns
 crow provides CMake targets:
 
   # this is heuristically generated, and may not be correct
@@ -22,6 +22,6 @@ libpqxx provides pkg-config modules:
   libpqxx
 
 -- Running vcpkg install - done
--- Configuring done (1.2s)
+-- Configuring done (3.1s)
 -- Generating done (0.0s)
 -- Build files have been written to: /home/omer/CLionProjects/cppPhoneDirectory/cmake-build-debug

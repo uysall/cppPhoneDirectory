@@ -378,6 +378,15 @@ cppPhoneDirectory_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 cppPhoneDirectory_SOURCE_DIR:STATIC=/home/omer/CLionProjects/cppPhoneDirectory
 
+//Value Computed by CMake
+cpp_phone_directory_server_BINARY_DIR:STATIC=/home/omer/CLionProjects/cppPhoneDirectory/cmake-build-debug
+
+//Value Computed by CMake
+cpp_phone_directory_server_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+cpp_phone_directory_server_SOURCE_DIR:STATIC=/home/omer/CLionProjects/cppPhoneDirectory
+
 //The directory containing a CMake configuration file for libpqxx.
 libpqxx_DIR:PATH=/home/omer/CLionProjects/cppPhoneDirectory/cmake-build-debug/vcpkg_installed/x64-linux/share/libpqxx
 
