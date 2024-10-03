@@ -15,8 +15,13 @@ include_directories(${CMAKE_SOURCE_DIR}/path/to/crow)
 
 add_executable(${PROJECT_NAME}
         main.cpp
-        user.hpp
         colors.hpp
+        application/application-user-service.hpp
+        domain/user.hpp
+        domain/user-factory.hpp
+        domain/user-repository.hpp
+        domain/user-service.hpp
+        application/dto-assembler.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
