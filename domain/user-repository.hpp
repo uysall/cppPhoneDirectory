@@ -22,13 +22,13 @@ namespace UserRepository {
         nt.exec_params("DELETE FROM direction.direction_table WHERE id = $1;", id);
     }
 
-    inline std::vector<User> userList(pqxx::connection &conn)
+    inline crow::json::wvalue userList(pqxx::connection &conn)
     {
-        pqxx::nontransaction nt(conn);
+        pqxx::work txn(conn);
 
-        const pqxx::result res = nt.exec("SELECT id, name, surname, email, phonenumber FROM direction.direction_table;");
+        const pqxx::result result = txn.exec("SELECT id, name, surname, email, phonenumber FROM direction.direction_table;");
+        return UserFactory::generateListFromDb(result);
 
-        return UserFactory::generateListFromDb(res);
     }
 
     inline void updateUser(const User& user, pqxx::connection& conn) {
@@ -46,6 +46,5 @@ namespace UserRepository {
             );
         return UserFactory::generateFromDb(res[0]);
     }
-
 }
 #endif //USER_REPOSITORY_HPP

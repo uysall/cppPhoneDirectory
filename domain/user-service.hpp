@@ -26,10 +26,9 @@ namespace UserService {
         UserRepository::removeUserById(id, conn);
     }
 
-    inline std::vector<User> userList(pqxx::connection &conn)
+    inline crow::json::wvalue userList(pqxx::connection &conn)
     {
-        const std::vector<User> userList = UserRepository::userList(conn);
-        return userList;
+        return UserRepository::userList(conn);
     }
 
     inline void updateUser(const int& id, const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber, pqxx::connection &conn)

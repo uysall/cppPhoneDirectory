@@ -4,7 +4,7 @@
 #include <pqxx/pqxx>
 #include <vector>
 
-
+    using namespace std;
     namespace UserFactory {
 
     inline User generateForDb(const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber)
@@ -30,15 +30,18 @@
         return user;
     }
 
-    inline std::vector<User> generateListFromDb(const pqxx::result& res)
-    {
-        std::vector<User> users;
-        users.reserve(res.size());
+    inline crow::json::wvalue generateListFromDb(const pqxx::result& res) {
+        crow::json::wvalue users;
         for (const auto  &row : res) {
+            users[row[0].as<int>()] = {
+                {"name", row[1].as<string>()},
+                {"surname", row[2].as<string>()},
+                {"phone_number", row[3].as<string>()},
+                {"email", row[4].as<string>()},
+                {"notes", row[5].as<string>()}
 
-            users.emplace_back(generateFromDb(row));
+            };
         }
-
         return users;
     }
 };

@@ -14,7 +14,7 @@ namespace UserApplicationService {
 
     inline User getUserById(const int id, pqxx::connection &conn)
     {
-        return UserService::getUserById(id, conn);
+        return UserService::getUserById(id,conn);
     }
 
     inline void removeUserById(const int id, pqxx::connection& conn)
@@ -22,10 +22,8 @@ namespace UserApplicationService {
         UserService::removeUserById(id, conn);
     }
 
-    inline auto userList(pqxx::connection& conn)
+    inline crow::json::wvalue userList(pqxx::connection& conn)
     {
-        const std::vector<User> userList = UserService::userList(conn);
-
         return DtoAssembler::generateGetList(userList);
     }
 
