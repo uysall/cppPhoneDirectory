@@ -3,22 +3,27 @@
 #include <nlohmann/json.hpp>
 
 namespace DtoAssembler {
-    inline crow::json::wvalue generateGetList(const std::vector<User>& userList) {
-        nlohmann::json jsonUsers = nlohmann::json::array();
 
-        for (const User& user: userList) {
-            nlohmann::json userJson;
+
+    inline crow::json::wvalue generateGetList(const std::vector<User>& userList) {
+        crow::json::wvalue jsonUsers = crow::json::wvalue::list();
+
+        for (const User& user : userList) {
+
+            crow::json::wvalue userJson;
             userJson["id"] = user.id;
             userJson["name"] = user.name;
             userJson["surname"] = user.surname;
             userJson["email"] = user.email;
             userJson["phoneNumber"] = user.phoneNumber;
 
-            jsonUsers.push_back(userJson);
+            jsonUsers.emplace_back(std::move(userJson));
         }
 
         return jsonUsers;
     }
+
+}
 
     inline nlohmann::json generateGetUser(const User &user) {
         nlohmann::json jsonUser;
@@ -30,7 +35,5 @@ namespace DtoAssembler {
         return jsonUser;
     }
 
-    crow::json::wvalue generateGetList(crow::json::wvalue(* user_list)(pqxx::connection &));
-}
 
 #endif //DTO_ASSEMBLER_HPP

@@ -4,7 +4,6 @@
 #include "user.hpp"
 #include "user-repository.hpp"
 #include "user-factory.hpp"
-#include <vector>
 #include <pqxx/pqxx>
 
 namespace UserService {
@@ -16,8 +15,6 @@ namespace UserService {
 
     inline User getUserById(const int id, pqxx::connection &conn)
     {
-        UserRepository::getUserById(conn);
-
         return UserRepository::getUserById(conn);
     }
 
@@ -26,7 +23,7 @@ namespace UserService {
         UserRepository::removeUserById(id, conn);
     }
 
-    inline crow::json::wvalue userList(pqxx::connection &conn)
+    inline std::vector<User> userList(pqxx::connection &conn)
     {
         return UserRepository::userList(conn);
     }

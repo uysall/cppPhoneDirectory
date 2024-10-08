@@ -16,19 +16,19 @@ namespace UserRepository {
         );
     }
 
-    inline void removeUserById(const int& id, pqxx::connection& conn)
+    inline void  removeUserById(const int& id, pqxx::connection& conn)
     {
         pqxx::nontransaction nt(conn);
         nt.exec_params("DELETE FROM direction.direction_table WHERE id = $1;", id);
     }
 
-    inline crow::json::wvalue userList(pqxx::connection &conn)
+    inline std::vector <User>  userList(pqxx::connection &conn)
     {
         pqxx::work txn(conn);
 
         const pqxx::result result = txn.exec("SELECT id, name, surname, email, phonenumber FROM direction.direction_table;");
-        return UserFactory::generateListFromDb(result);
 
+        return UserFactory::generateListFromDb(result);
     }
 
     inline void updateUser(const User& user, pqxx::connection& conn) {
@@ -46,5 +46,7 @@ namespace UserRepository {
             );
         return UserFactory::generateFromDb(res[0]);
     }
+
+    User getUserById(const pqxx::connection & id);
 }
 #endif //USER_REPOSITORY_HPP

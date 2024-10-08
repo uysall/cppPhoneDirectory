@@ -1,9 +1,8 @@
 #include "crow.h"
+
 #include <nlohmann/json.hpp>
+
 #include "application/application-user-service.hpp"
-#include <pqxx/pqxx>
-//düz response veriyorum json tipinde response etmem gerek.
-// nesnemi crow json tipinde istiyor
 
 int main() {
     crow::SimpleApp app;
@@ -12,8 +11,7 @@ int main() {
 
     CROW_ROUTE(app, "/list_users").methods(crow::HTTPMethod::GET)([&conn]() {
         auto users = UserApplicationService::userList(conn);
-        pqxx::connection& conn=conn;
-        return UserApplicationService::userList(conn);
+        return crow::response(201, users);
     });
 
     CROW_ROUTE(app, "/add_users").methods(crow::HTTPMethod::POST)([&conn](const crow::request& req) {
@@ -34,7 +32,7 @@ int main() {
         }
     });
 
-    CROW_ROUTE(app, "/remove_user/<int>").methods(crow::HTTPMethod::DELETE)([&conn](int id) {
+    CROW_ROUTE(app, "/remove_user/<int>").methods(crow::HTTPMethod::DELETE)([&conn](const int id) {
         try {
             UserApplicationService::removeUserById(id, conn);
             crow::json::wvalue response;
@@ -47,7 +45,7 @@ int main() {
         }
     });
 
-    CROW_ROUTE(app, "/updated_user/<int>").methods(crow::HTTPMethod::PUT)([&conn](const crow::request& req, int id) {
+    CROW_ROUTE(app, "/updated_user/<int>").methods(crow::HTTPMethod::PUT)([&conn](const crow::request& req, const int id) {
         try {
             auto body = nlohmann::json::parse(req.body);
             UserApplicationService::updateUser(
@@ -70,20 +68,22 @@ int main() {
     });
 
     CROW_ROUTE(app, "/get_user/<int>").methods(crow::HTTPMethod::GET)
-([&conn](const int id) {
-    try {
-        const User user = UserApplicationService::getUserById(id, conn);
-        crow::json::wvalue response;
-        return crow::response(200, response);
-    } catch (...) {
-        crow::json::wvalue error;
-        error["error"] = "User not found";
-        return crow::response(404, error);
-    }
-});
+    ([&conn](const int id) {
+        try {
+            const User user = UserApplicationService::getUserById(id, conn);
+            crow::json::wvalue response;
+            return crow::response(200, response);
+        } catch (...) {
+            crow::json::wvalue error;
+            error["error"] = "User not found";
+            return crow::response(404, error);
+        }
+    });
 
 
     app.port(18081).multithreaded().run();
 
     return 0;
 }
+
+#include <pqxx/pqxx>
