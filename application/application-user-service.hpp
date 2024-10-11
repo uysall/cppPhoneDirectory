@@ -7,7 +7,8 @@
 #include "./dto-assembler.hpp"
 
 namespace UserApplicationService {
-    inline void addUser(const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber, pqxx::connection& conn)
+    inline void addUser(const std::string &name, const std::string &surname, const std::string &email, const std::string &phoneNumber, pqxx::
+                        connection &conn)
     {
         UserService::addUser(name, surname, email, phoneNumber, conn);
     }
@@ -28,7 +29,7 @@ namespace UserApplicationService {
         return DtoAssembler::generateGetList(userList);
     }
 
-    inline void updateUser(const int& id, const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber, pqxx::connection &conn)
+    inline   void updateUser(const int& id, const string& name, const string& surname, const string& email, const string& phoneNumber, pqxx::connection& conn)
 
     {
         UserService::updateUser(id, name, surname, email, phoneNumber, conn);

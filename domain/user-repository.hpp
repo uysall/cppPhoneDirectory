@@ -4,22 +4,23 @@
 #include <pqxx/pqxx>
 
 #include "user-factory.hpp"
+#include "user-service.hpp"
 #include "user.hpp"
 
 namespace UserRepository {
     inline void addUser(const User& user, pqxx::connection& conn)
     {
-        pqxx::nontransaction nt(conn);
-        nt.exec_params(
-            "INSERT INTO direction.direction_table(name, surname, email, phonenumber) VALUES ($1, $2, $3, $4);",
-            user.name, user.surname, user.email, user.phoneNumber
+        pqxx::work nt(conn);
+        nt.exec_params("INSERT INTO direction.direction_table(name, surname, email, phonenumber) VALUES ($1, $2, $3, $4);",
+            user.name, user.surname, user.email, user.phoneNumber,user.id
         );
     }
 
-    inline void  removeUserById(const int& id, pqxx::connection& conn)
+    inline void removeUserById(const int& id, pqxx::connection& conn)
     {
-        pqxx::nontransaction nt(conn);
+        pqxx::work nt(conn);
         nt.exec_params("DELETE FROM direction.direction_table WHERE id = $1;", id);
+        nt.commit();
     }
 
     inline std::vector <User>  userList(pqxx::connection &conn)
@@ -31,22 +32,20 @@ namespace UserRepository {
         return UserFactory::generateListFromDb(result);
     }
 
-    inline void updateUser(const User& user, pqxx::connection& conn) {
-        pqxx::nontransaction nt(conn);
+     inline void updateUser(const User& user, pqxx::connection& conn) {
+        pqxx::work nt(conn);
         nt.exec_params(
-            "UPDATE direction.direction_table SET name = $1, surname = $2, email = $3 WHERE id = $4;",
-            user.name, user.surname, user.email, user.id
-        );
+        "UPDATE direction.direction_table SET name = $1, surname = $2, email = $3 WHERE id = $4;",
+            user.name, user.surname, user.email, user.id);
     }
 
-    inline User getUserById(pqxx::connection &conn) {
-        pqxx::nontransaction nt(conn);
-        const pqxx::result res = nt.exec_params(
-            "SELECT name, surname, email, phonenumber FROM direction.direction_table WHERE id = $1;"
-            );
+
+    inline User getUserById( pqxx::connection &conn) {
+        pqxx::work nt(conn);
+        const pqxx::result res = nt.exec_params("SELECT name, surname, email, phonenumber FROM direction.direction_table WHERE id = $1;");
+
         return UserFactory::generateFromDb(res[0]);
     }
 
-    User getUserById(const pqxx::connection & id);
 }
 #endif //USER_REPOSITORY_HPP

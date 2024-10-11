@@ -36,7 +36,7 @@ int main() {
         try {
             UserApplicationService::removeUserById(id, conn);
             crow::json::wvalue response;
-            response["message"] = "User removed successfully";
+            response["message"]= "User removed successfully";
             return crow::response(200, response);
         } catch (...) {
             crow::json::wvalue error;
@@ -49,8 +49,8 @@ int main() {
         try {
             auto body = nlohmann::json::parse(req.body);
             UserApplicationService::updateUser(
-                id,
-                body["name"].get<std::string>(),
+            id,
+            body["name"].get<std::string>(),
                 body["surname"].get<std::string>(),
                 body["email"].get<std::string>(),
                 body["phoneNumber"].get<std::string>(),

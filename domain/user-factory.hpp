@@ -27,17 +27,18 @@ using namespace std;
         user.id = row[0].as<int>();
         return user;
     }
-
-        inline auto generateListFromDb(const pqxx::result &res) {
+        inline std::vector<User> generateListFromDb(const pqxx::result &res) {
         std::vector<User> users;
         for (const auto &row : res) {
             users.emplace_back(
-                row[1].as<std::string>(),
-                row[2].as<std::string>(),
-                row[3].as<std::string>(),
-                row[4].as<std::string>()
+            row[1].as<std::string>(),
+            row[2].as<std::string>(),
+            row[3].as<std::string>(),
+            row[4].as<std::string>()
+
             );
         }
+
         return users;
     }
 };

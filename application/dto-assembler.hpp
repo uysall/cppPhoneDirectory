@@ -7,9 +7,8 @@ namespace DtoAssembler {
 
     inline crow::json::wvalue generateGetList(const std::vector<User>& userList) {
         crow::json::wvalue jsonUsers = crow::json::wvalue::list();
-
-        for (const User& user : userList) {
-
+        for (size_t i = 0; i < userList.size(); ++i) {
+            const User& user = userList[i];
             crow::json::wvalue userJson;
             userJson["id"] = user.id;
             userJson["name"] = user.name;
@@ -17,11 +16,12 @@ namespace DtoAssembler {
             userJson["email"] = user.email;
             userJson["phoneNumber"] = user.phoneNumber;
 
-            jsonUsers.emplace_back(std::move(userJson));
+            jsonUsers[i] = std::move(userJson);
         }
 
         return jsonUsers;
     }
+
 
 }
 

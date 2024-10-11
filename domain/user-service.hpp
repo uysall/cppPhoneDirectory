@@ -36,7 +36,6 @@ namespace UserService {
         user.email = email;
         user.phoneNumber = phoneNumber;
 
-        UserRepository::updateUser(user, conn);
     }
 }
 
