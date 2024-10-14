@@ -32,7 +32,7 @@ namespace UserRepository {
         return UserFactory::generateListFromDb(result);
     }
 
-     inline void updateUser(const User& user, pqxx::connection& conn) {
+    inline void updateUser(const User& user, pqxx::connection& conn) {
         pqxx::work nt(conn);
         nt.exec_params(
         "UPDATE direction.direction_table SET name = $1, surname = $2, email = $3 WHERE id = $4;",

@@ -1,25 +1,24 @@
-    #ifndef USER_HPP
-    #define USER_HPP
+#ifndef USER_HPP
+#define USER_HPP
 
-    #include <string>
+#include <string>
 
-    class User {
+class User {
 
-    public:
-    //parametreler alt alta
-        int id{};
-        std::string name;
-        std::string surname;
-        std::string email;
-        std::string phoneNumber;
+public:
+    int id{};
+    std::string name;
+    std::string surname;
+    std::string email;
+    std::string phoneNumber;
 
-        User() = default;
+    User() = default;
 
-        User(std::string name, std::string surname, std::string email, std::string phoneNumber)
-            : name(std::move(name)), surname(std::move(surname)), email(std::move(email)),
-              phoneNumber(std::move(phoneNumber)) {}
+    User(std::string name, std::string surname, std::string email, std::string phoneNumber)
+        : name(std::move(name)), surname(std::move(surname)), email(std::move(email)),
+          phoneNumber(std::move(phoneNumber)) {}
 
-    };
+};
 
 
-    #endif //USER_HPP
+#endif //USER_HPP

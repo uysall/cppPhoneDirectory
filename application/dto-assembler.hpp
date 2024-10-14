@@ -25,15 +25,15 @@ namespace DtoAssembler {
 
 }
 
-    inline nlohmann::json generateGetUser(const User &user) {
-        nlohmann::json jsonUser;
-        jsonUser["id"] = user.id;
-        jsonUser["name"] = user.name;
-        jsonUser["surname"] = user.surname;
-        jsonUser["email"] = user.email;
-        jsonUser["phoneNumber"] = user.phoneNumber;
-        return jsonUser;
-    }
+inline nlohmann::json generateGetUser(const User &user) {
+    nlohmann::json jsonUser;
+    jsonUser["id"] = user.id;
+    jsonUser["name"] = user.name;
+    jsonUser["surname"] = user.surname;
+    jsonUser["email"] = user.email;
+    jsonUser["phoneNumber"] = user.phoneNumber;
+    return jsonUser;
+}
 
 
 #endif //DTO_ASSEMBLER_HPP

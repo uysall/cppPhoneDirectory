@@ -29,6 +29,7 @@ int main() {
             return crow::response(201, "User added successfully");
         } catch (...) {
             return crow::response(400, "Invalid user data");
+
         }
     });
 

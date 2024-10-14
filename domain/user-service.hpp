@@ -31,6 +31,7 @@ namespace UserService {
     inline void updateUser(const int& id, const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber, pqxx::connection &conn)
     {
         User user = UserRepository::getUserById(conn);
+        user.id = id;
         user.name = name;
         user.surname = surname;
         user.email = email;

@@ -4,7 +4,7 @@
 #include <pqxx/pqxx>
 
 using namespace std;
-    namespace UserFactory {
+namespace UserFactory {
 
     inline User generateForDb(const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber)
     {
@@ -27,7 +27,7 @@ using namespace std;
         user.id = row[0].as<int>();
         return user;
     }
-        inline std::vector<User> generateListFromDb(const pqxx::result &res) {
+    inline std::vector<User> generateListFromDb(const pqxx::result &res) {
         std::vector<User> users;
         for (const auto &row : res) {
             users.emplace_back(

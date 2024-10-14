@@ -25,11 +25,11 @@ namespace UserApplicationService {
 
     inline crow::json::wvalue userList(pqxx::connection &conn)
     {
-         const std::vector<User> userList=UserService::userList(conn);
+        const std::vector<User> userList=UserService::userList(conn);
         return DtoAssembler::generateGetList(userList);
     }
 
-    inline   void updateUser(const int& id, const string& name, const string& surname, const string& email, const string& phoneNumber, pqxx::connection& conn)
+    inline  void updateUser(const int& id, const string& name, const string& surname, const string& email, const string& phoneNumber, pqxx::connection& conn)
 
     {
         UserService::updateUser(id, name, surname, email, phoneNumber, conn);
