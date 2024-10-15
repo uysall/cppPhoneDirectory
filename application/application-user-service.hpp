@@ -3,8 +3,9 @@
 
 #include <vector>
 
-#include "../domain/user-service.hpp"
-#include "./dto-assembler.hpp"
+#include "domain/user/user-service.hpp"
+#include "application/dto-assembler.hpp"
+
 
 namespace UserApplicationService {
     inline void addUser(const std::string &name, const std::string &surname, const std::string &email, const std::string &phoneNumber, pqxx::

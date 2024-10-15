@@ -12,7 +12,7 @@ namespace UserRepository {
     {
         pqxx::work nt(conn);
         nt.exec_params("INSERT INTO direction.direction_table(name, surname, email, phonenumber) VALUES ($1, $2, $3, $4);",
-            user.name, user.surname, user.email, user.phoneNumber,user.id
+            user.name, user.surname, user.email, user.phoneNumber
         );
     }
 

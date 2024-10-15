@@ -2,6 +2,7 @@
 #define USER_FACTORY_HPP
 
 #include <pqxx/pqxx>
+#include "user.hpp"
 
 using namespace std;
 namespace UserFactory {

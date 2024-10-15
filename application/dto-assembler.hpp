@@ -1,7 +1,7 @@
 #ifndef DTO_ASSEMBLER_HPP
 #define DTO_ASSEMBLER_HPP
 #include <nlohmann/json.hpp>
-
+#include "domain/user/user.hpp"
 namespace DtoAssembler {
 
 

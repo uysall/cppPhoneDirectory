@@ -17,11 +17,15 @@ add_executable(${PROJECT_NAME}
         main.cpp
         colors.hpp
         application/application-user-service.hpp
-        domain/user.hpp
-        domain/user-factory.hpp
-        domain/user-repository.hpp
-        domain/user-service.hpp
+        domain/user/user.hpp
+        domain/user/user-factory.hpp
+        domain/user/user-repository.hpp
+        domain/user/user-service.hpp
         application/dto-assembler.hpp
+        domain/product/product.hpp
+        domain/product/product-service.hpp
+        domain/product/product-repository.hpp
+        domain/product/product-factory.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} PRIVATE

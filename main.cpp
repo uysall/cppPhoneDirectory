@@ -1,8 +1,8 @@
 #include "crow.h"
 
 #include <nlohmann/json.hpp>
-
 #include "application/application-user-service.hpp"
+#include "domain/user/user.hpp"
 
 int main() {
     crow::SimpleApp app;
