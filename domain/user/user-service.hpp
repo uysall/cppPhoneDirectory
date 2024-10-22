@@ -3,19 +3,18 @@
 
 #include "user.hpp"
 #include "user-repository.hpp"
-#include "user-factory.hpp"
 #include <pqxx/pqxx>
 
 namespace UserService {
     inline void addUser(const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber, pqxx::connection& conn)
     {
-        const User user = UserFactory::generateForDb(name, surname, email, phoneNumber);
-        UserRepository::addUser(user, conn);
+
+        UserRepository::addUser(name, surname, email, phoneNumber, conn);
     }
 
     inline User getUserById(const int id, pqxx::connection &conn)
     {
-        return UserRepository::getUserById(conn);
+        return UserRepository::getUserById(id,conn);
     }
 
     inline void removeUserById(const int id, pqxx::connection &conn)
@@ -30,7 +29,7 @@ namespace UserService {
 
     inline void updateUser(const int& id, const std::string& name, const std::string& surname, const std::string& email, const std::string& phoneNumber, pqxx::connection &conn)
     {
-        User user = UserRepository::getUserById(conn);
+        User user = UserRepository::getUserById(id,conn);
         user.id = id;
         user.name = name;
         user.surname = surname;

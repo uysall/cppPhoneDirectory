@@ -1,13 +1,39 @@
 #include "crow.h"
-
 #include <nlohmann/json.hpp>
-#include "application/application-user-service.hpp"
+#include "application/user/application-user-service.hpp"
 #include "domain/user/user.hpp"
 
 int main() {
     crow::SimpleApp app;
 
     pqxx::connection conn("dbname=direction user=Ömer password=Ou131973 host=127.0.0.1 port=5432");
+
+    CROW_ROUTE(app, "/products")([&conn]() {
+    try {
+        crow::json::wvalue result;
+        pqxx::work txn(conn);
+
+        auto res = txn.exec(
+            "SELECT p.productId, p.productName, p.price, c.categoryId, c.categoryName "
+            "FROM Product p "
+            "LEFT JOIN ProductCategory c ON p.categoryId = c.categoryId");
+
+        int index = 0;
+        for (const auto &row : res) {
+            result[index]["productId"] = row["productId"].as<int>();
+            result[index]["productName"] = row["productName"].c_str();
+            result[index]["price"] = row["price"].as<double>();
+            result[index]["categoryId"] = row["categoryId"].is_null() ? 0 : row["categoryId"].as<int>();
+            result[index]["categoryName"] = row["categoryName"].is_null() ? nullptr : row["categoryName"].c_str();
+            ++index;
+        }
+
+        return crow::response{result};
+    } catch (const std::exception& e) {
+        std::cerr << "Database query error: " << e.what() << std::endl;
+        return crow::response(500, "Database query error");
+    }
+});
 
     CROW_ROUTE(app, "/list_users").methods(crow::HTTPMethod::GET)([&conn]() {
         auto users = UserApplicationService::userList(conn);
